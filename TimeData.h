@@ -1,3 +1,8 @@
+/*Class which creates and modifies dates*/
+#include <iostream>
+using namespace std;
+
+
 class Time
 {
 
@@ -13,8 +18,8 @@ private:
 public:
 	Time();
 	~Time();
-	void printDate(Date date); //Print the given Date on Screen
-    Date addDay(Date date, int days);//
+	void printDate(Date date); //Print the given date on screen
+    Date addDay(Date date, int days);//Adds given days to an date
 
 
 
@@ -28,5 +33,8 @@ Time::Time()
 
 }
 
-
+void Time::printDate(Date date)
+{
+  cout << date._day << "." << date._month << "." << date._year << " " << endl;
+}
 
