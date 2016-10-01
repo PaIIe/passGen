@@ -6,16 +6,9 @@ requirements
 ->between one and another password, one character needs to change.
 */
 
-
-
-/*
-24.09.16
-*/
-
-
 #include <iostream>
-#include <C:\Users\Danny\Documents\Visual Studio 2013\ThinkLikeAProgrammer\KeyGen\KeyGen\TimeData.h>
-//#include <C:\Users\Danny\Documents\Visual Studio 2013\ThinkLikeAProgrammer\KeyGen\KeyGen\Pass.h>
+#include <time.h> 
+#include <stdlib.h>
 using namespace std;
 
 void generatePassword()
@@ -38,24 +31,3 @@ void generatePassword()
   }
 
 }
-
-int main()
-{
-  
-  Time Month(4, 10, 1993);
-  
-  Month.printDate();
-  Month.add90Days(); //02.01.
-  Month.printDate(); 
- 
-  generatePassword();
-  
-
-  int HOLD_SYSTEM;
-  cin >> HOLD_SYSTEM;
-
-
-  return 0;
-
-}
-
