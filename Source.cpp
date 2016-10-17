@@ -14,41 +14,85 @@ requirements
 
 
 #include <iostream>
-#include <C:\Users\Danny\Documents\Visual Studio 2013\ThinkLikeAProgrammer\KeyGen\KeyGen\TimeData.h>
+#include <F:\CPlusPlus\Projects\passGenerator\TimeData.h>
+#include <time.h>
+#include <Windows.h>
+#include <fsrm.h>
 //#include <C:\Users\Danny\Documents\Visual Studio 2013\ThinkLikeAProgrammer\KeyGen\KeyGen\Pass.h>
 using namespace std;
-
+/*
 void generatePassword()
 {
+  ofstream passwords;
+  passwords.open("password.txt");
 
-  srand(time(NULL)); //creates Random seed
-  char pass[15];
-  int secretCoin = rand() % 2;
-  char secretBig = rand() % 35 + 90;
-  char secretSmall = rand() % 97 + 122;
-
-  for (int i = 0; i < 15; i++)
+  int count = 0;
+  for (int i = 1; i < 16; i++)
   {
-    if (secretCoin == 1)
-      pass[i] = secretBig;
-    else
-      pass[i] = secretSmall;
+    srand(time(NULL)*i); //creates Random seed out of the time function in STL
+    char pass[15];
+    int secretCoin = rand() % 2;
+    char secretBig = rand() % 26 + 65;
+    char secretSmall = rand() % 26 + 97;
+    
 
-    cout << pass[i];
+
+    if (secretCoin == 1)
+      pass[i-1] = secretBig;
+    else
+      pass[i-1] = secretSmall;
+    
+    if (secretBig % 3 == 0 && count < 2)
+    {
+      char secretSpecial = rand() % 6 + 33; /// TODO7
+      pass[i-1] = secretSpecial;
+      count++;
+    }
+    
+    else if (secretSmall % 3 == 0)
+    {
+      char secretNumber = rand() % 10 + 48;
+      pass[i - 1] = secretNumber;
+    }
+    
+    
+   
+    
+    cout << pass[i-1];
   }
+  cout << endl;
+
+
 
 }
-
+*/
 int main()
-{
+{  
+  ofstream passwords;
+  passwords.open("password.txt");
+
+  char *passw;
   
-  Time Month(4, 10, 1993);
-  
-  Month.printDate();
-  Month.add90Days(); //02.01.
-  Month.printDate(); 
+
+  Time Month(18, 10, 2016);
+
+  for (int i = 0; i < 50; i++)
+  {
+    passwords << Month.date._day << "." << Month.date._month << "." << Month.date._year << "       ";
+
+    passw = generatePassword();
+    passwords << passw[0] << passw[1] << passw[2] << passw[3] << passw[4] << passw[5] << passw[6] << passw[7] << passw[8] << passw[9] << passw[10] << passw[11] << passw[12] << passw[13] << passw[14] << "\n";
+    passwords << "------------------------------\n";
+    Sleep(1000.0);
+    Month.add90Days();
+  }
+   
  
-  generatePassword();
+  
+  passwords.close();
+    
+
+  
   
 
   int HOLD_SYSTEM;

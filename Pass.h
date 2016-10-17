@@ -6,28 +6,58 @@ requirements
 ->between one and another password, one character needs to change.
 */
 
+
 #include <iostream>
-#include <time.h> 
-#include <stdlib.h>
+#include <time.h>
+#include <Windows.h>
+#include <fsrm.h>
+//#include <C:\Users\Danny\Documents\Visual Studio 2013\ThinkLikeAProgrammer\KeyGen\KeyGen\Pass.h>
 using namespace std;
 
-void generatePassword()
+char *generatePassword()
 {
+  ofstream passwords;
+  passwords.open("password.txt");
 
-  srand(time(NULL)); //creates Random seed
+  int count = 0;
   char pass[15];
-  int secretCoin = rand() % 2;
-  char secretBig = rand() % 35 + 90;
-  char secretSmall = rand() % 97 + 122;
-
-  for (int i = 0; i < 15; i++)
+  for (int i = 1; i < 16; i++)
   {
-    if (secretCoin == 1)
-      pass[i] = secretBig;
-    else
-      pass[i] = secretSmall;
+    srand(time(NULL)*i); //creates Random seed out of the time function in STL
+    
+    int secretCoin = rand() % 2;
+    char secretBig = rand() % 26 + 65;
+    char secretSmall = rand() % 26 + 97;
 
-    cout << pass[i];
+
+
+    if (secretCoin == 1)
+      pass[i - 1] = secretBig;
+    else
+      pass[i - 1] = secretSmall;
+
+    if (secretBig % 3 == 0 && count < 2)
+    {
+      char secretSpecial = rand() % 6 + 33; /// TODO7
+      pass[i - 1] = secretSpecial;
+      count++;
+    }
+
+    else if (secretSmall % 3 == 0)
+    {
+      char secretNumber = rand() % 10 + 48;
+      pass[i - 1] = secretNumber;
+    }
+
+
+
+
+    cout << pass[i - 1];
   }
+  cout << endl;
+
+  return pass;
+
+
 
 }
