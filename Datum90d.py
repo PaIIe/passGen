@@ -1,6 +1,6 @@
 from datetime import date
 
-#generates randompassword
+#generates randompassword!
 #with follow requirements
 #->atleast 13 Signs			->atleast 1 spezial character
 #->atleast 1 captial Letter	->needs to Change every 90 Days
